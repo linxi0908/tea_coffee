@@ -213,29 +213,6 @@
                     }
             });
         });
-
-        // Lắng nghe sự kiện khi người dùng nhập số điện thoại
-        $('input[name="phone"]').on('keyup', function() {
-            var phoneNumber = $(this).val();
-
-            // Gửi yêu cầu Ajax để kiểm tra số điện thoại và lấy dữ liệu người dùng
-            $.ajax({
-                method: 'POST',
-                url: '{{ route('admin.get_user_by_phone') }}',
-                data: {
-                    phone: phoneNumber,
-                    _token: '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    // Kiểm tra dữ liệu trả về
-                    if (response.success) {
-                        // Điền dữ liệu vào các trường tương ứng
-                        $('input[name="name"]').val(response.user.name);
-                        // Điền dữ liệu khác nếu cần thiết
-                    }
-                }
-            });
-        });
     });
 
     function reloadView(response) {

@@ -43,9 +43,11 @@
                                     </button>
                                 </div>
                                 <div>
+                                    @if($order->status != "success")
                                     <button class="btn theme-btn-2 btn-effect-2 disabled">
                                         <a href="{{ route('update_order_status',[$order->id]) }}">Xác nhận giao hàng</a>
                                     </button>
+                                    @endif
                                 </div>
                             </div>
                         </div>

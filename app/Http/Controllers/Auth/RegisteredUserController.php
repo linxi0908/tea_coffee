@@ -71,7 +71,7 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::PROFILE);
+        $message = "Đăng ký tài khoản thành công.";
+        return redirect(RouteServiceProvider::PROFILE)->with('message', $message);
     }
 }

@@ -29,6 +29,7 @@ class GoogleController extends Controller
         );
 
         Auth::login($user);
-        return redirect()->route('profile.edit');
+        $message = "Đăng ký tài khoản thành công.";
+        return redirect()->route('profile.edit')->with('message', $message);
     }
 }

@@ -6,7 +6,6 @@
                 <div class="error-404-inner text-center">
                     <h1 class="error-404-title">404</h1>
                     <h2>Không tìm thấy trang! Không tìm thấy trang!</h2>
-                    <!-- <h3>Oops! Looks like something going rong</h3> -->
                     <p>Rất tiếc! Trang bạn đang tìm kiếm không tồn tại. Nó có thể đã được di chuyển hoặc bị xóa.</p>
                     <div class="btn-wrapper">
                         @if(!Auth::check() || Auth::user()->role_id !== 1)

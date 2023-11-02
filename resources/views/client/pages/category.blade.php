@@ -35,8 +35,6 @@
                     </div>
                     <div class="ltn__category-item-name">
                         <h5>
-                            {{-- <a href="{{ route('products.filter',['slug'=> $productCategory->slug]) }}">
-                            {{ $productCategory->name }}</a> --}}
                             <a href="{{ route('products',  ['slug' => $productCategory->slug]) }}"> {{ $productCategory->name }}
                             </a>
                         </h5>

@@ -40,11 +40,9 @@
                                                 $rank = $user->calculateTotalAmount();
                                                 if(Auth::user()->role_id === 2){
                                                     if($rank >= 1000000){
-                                                    // $rankName = 'VIP';
                                                     echo "<p>Hạng: <strong>VIP</strong></p>";
                                                 }
                                                 elseif ($rank < 1000000) {
-                                                    // $rankName = 'Thành viên';
                                                     echo "<p>Hạng: <strong>Thành viên</strong></p>";
                                                 }
                                                 }else{
@@ -93,7 +91,7 @@
                                                             icon: 'success',
                                                             text: '".session('message')."',
                                                             didOpen: () => {
-                                                                $('.nice-select').css('display', 'none'); // Ẩn phần tử .nice-select
+                                                                $('.nice-select').css('display', 'none');
                                                             }
                                                         });
                                                     });

@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInformationRequest;
 use App\Http\Requests\UpdateInformationRequest;
 use App\Models\Information;
-use Illuminate\Support\Facades\DB;
 
 class InformationController extends Controller{
     public function create(){

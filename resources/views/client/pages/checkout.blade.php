@@ -41,9 +41,6 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-item input-item-address ltn__custom-icon">
-                                            {{-- <select name="city" class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
-                                                <option value="" selected>Chọn tỉnh thành</option>
-                                            </select> --}}
                                             <input type="text" name="city" value="Thành phố Hồ Chí Minh" placeholder="Số điện thoại" disabled>
                                         </div>
                                         @error('city')
@@ -54,9 +51,6 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-item input-item-textarea  ltn__custom-icon">
-                                            {{-- <select name="district" class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
-                                                <option value="" selected>Chọn quận huyện</option>
-                                              </select> --}}
                                               <input type="text" name="district" value="{{ old('district') }}" placeholder="Quận, Huyện" >
                                         </div>
                                         @error('district')

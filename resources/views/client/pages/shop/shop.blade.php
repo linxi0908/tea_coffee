@@ -18,12 +18,12 @@
 
         $('#add_to_cart_modal').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget);
-            var productData = button.data('product'); // Dữ liệu sản phẩm từ thuộc tính data-product
+            var productData = button.data('product');
 
             var modal = $(this);
             var productImage = modal.find('.modal-product-img img');
             var imagesLink = isNull(productData.image) || !fileExists('images/products/' + productData.image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : 'images/products/' + productData.image;
-            productImage.attr('src', imagesLink); // Chỉnh sửa đường dẫn ảnh
+            productImage.attr('src', imagesLink);
             modal.find('.product-name a').text(productData.name);
         });
 

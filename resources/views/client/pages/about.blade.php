@@ -17,10 +17,6 @@
                         <h1 class="section-title">{{ $about->title }}</h1>
                         <p>{!! $about->description !!}</p>
                     </div>
-                    {{-- <p>sellers who aspire to be good, do good, and spread goodness. We
-                            democratic, self-sustaining, two-sided marketplace which thrives
-                            on trust and is built on community and quality content.</p> --}}
-
                 </div>
             </div>
             @endforeach

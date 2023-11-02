@@ -1,9 +1,9 @@
 @extends('client.page_header.page_header')
 
 @section('header_name')
-Thực đơn
+Tài khoản
 @endsection
 
 @section('header')
-Thực đơn
+Khôi phục mật khẩu
 @endsection

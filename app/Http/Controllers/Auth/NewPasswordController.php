@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
+use App\Models\Information;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -19,7 +21,13 @@ class NewPasswordController extends Controller
      */
     public function create(Request $request): View
     {
-        return view('auth.reset-password', ['request' => $request]);
+        $informations = Information::get();
+        $contacts = Contact::get();
+        return view('client.pages.reset_password.reset_password', [
+            'request' => $request,
+            'contacts' => $contacts,
+            'informations' => $informations
+        ]);
     }
 
     /**
@@ -32,7 +40,14 @@ class NewPasswordController extends Controller
         $request->validate([
             'token' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'password' => ['required', 'confirmed','min: 8', Rules\Password::defaults()],
+        ],
+        [
+            'email.required' => 'Email buộc phải nhập!',
+            'email.email' => 'Email phải là dạng email!',
+            'password.required' => 'Mật khẩu mới buộc phải nhập!',
+            'password.min' => 'Mật khẩu mới phải có ít nhất 8 ký tự.',
+            'password.confirmed' => 'Nhập lại mật khẩu không đúng.',
         ]);
 
         // Here we will attempt to reset the user's password. If it is successful we

@@ -138,8 +138,8 @@ class OrderController extends Controller
 
             event(new PlaceOrderSuccess($order, $user, $cart));
 
-
-            return redirect()->route('profile.edit');
+            $message = 'Đặt hàng thành công!';
+            return redirect()->route('profile.edit')->with('message', $message);;
         }catch(\Exception $exception){
             DB::rollBack();
             dd($exception->getMessage());

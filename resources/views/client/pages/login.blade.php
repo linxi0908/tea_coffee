@@ -5,8 +5,6 @@
             <div class="col-lg-12">
                 <div class="section-title-area text-center">
                     <h1 class="section-title">Đăng nhập <br>Vào tài khoản của bạn</h1>
-                    {{-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>
-                         Sit aliquid,  Non distinctio vel iste.</p> --}}
                 </div>
             </div>
         </div>
