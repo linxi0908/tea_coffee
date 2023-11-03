@@ -48,6 +48,7 @@
                         $('#total-items-cart').html(formatNumber(response.total_items));
                         $('#cart-subtotal').html(formatNumber(response.total_price));
                         $('#cart-total').html(formatNumber(response.total_price));
+                        $('.delete-cart').remove();
                     }
             });
         });

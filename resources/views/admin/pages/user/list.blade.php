@@ -9,7 +9,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-12">
                         <div class="card card-outline card-info">
                             <div class="card-header">
                                 <div class="row">
@@ -27,14 +27,19 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table justify-content-center">
+                                <table class="table table-responsive justify-content-center">
                                     <thead>
                                         <tr>
-                                            <th class="align-middle text-center" style="width: 10%">STT</th>
+                                            {{-- <th class="align-middle text-center" style="width: 10%">STT</th>
                                             <th class="align-middle text-center" style="width: 20%">Tên</th>
                                             <th class="align-middle text-center" style="width: 20%">Email</th>
                                             <th class="align-middle text-center" style="width: 20%">SĐT</th>
-                                            <th class="align-middle text-center" style="width: 20%">Hạng</th>
+                                            <th class="align-middle text-center" style="width: 20%">Hạng</th> --}}
+                                            <th class="align-middle text-center" >STT</th>
+                                            <th class="align-middle text-center" >Tên</th>
+                                            <th class="align-middle text-center" >Email</th>
+                                            <th class="align-middle text-center" >SĐT</th>
+                                            <th class="align-middle text-center" >Hạng</th>
                                         </tr>
                                     </thead>
                                     <tbody>

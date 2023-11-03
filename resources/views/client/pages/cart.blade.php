@@ -55,7 +55,8 @@
                                 </div>
                                 <div style="margin-right: 0 !important;">
                                     @if($cart != null)
-                                    <button type="submit" class="btn theme-btn-2 btn-effect-2-- disabled delete-cart">Xóa sản phẩm</button>
+                                    <button type="submit" class="btn theme-btn-2 btn-effect-2-- disabled delete-cart">Xóa sản phẩm
+                                    </button>
                                     @endif
                                 </div>
                             </div>

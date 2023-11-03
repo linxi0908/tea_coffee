@@ -91,7 +91,8 @@
                                                             icon: 'success',
                                                             text: '".session('message')."',
                                                             didOpen: () => {
-                                                                $('.nice-select').css('display', 'none');
+                                                                $('.nice-select').val('');
+                                                                $('.nice-select').niceSelect('update');
                                                             }
                                                         });
                                                     });

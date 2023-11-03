@@ -22,7 +22,7 @@
 
             var modal = $(this);
             var productImage = modal.find('.modal-product-img img');
-            var imagesLink = isNull(productData.image) || !fileExists('images/products/' + productData.image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : 'images/products/' + productData.image;
+            var imagesLink = isNull(productData.image) || !fileExists('/images/products/' + productData.image) ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg' : '/images/products/' + productData.image;
             productImage.attr('src', imagesLink);
             modal.find('.product-name a').text(productData.name);
         });
