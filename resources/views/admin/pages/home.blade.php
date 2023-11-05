@@ -152,36 +152,36 @@
 @section('js-custom')
     <script type="text/javascript">
         google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable(@json($arrayDatas));
-            var options = {
-                // title: 'Trạng thái đơn hàng',
-                is3D: true,
-            };
+    'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-            var chart = new google.visualization.PieChart(document.getElementById('order-summary'));
-            chart.draw(data, options);
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable(JSON.parse('@json($arrayDatas)'));
+        var options = {
+            // title: 'Trạng thái đơn hàng',
+            is3D: true,
+        };
 
-            //
-            var data2 = google.visualization.arrayToDataTable(<?php echo json_encode($arrayDatas2); ?>);
+        var chart = new google.visualization.PieChart(document.getElementById('order-summary'));
+        chart.draw(data, options);
 
-            var options2 = {
-                legend: { position: 'none' },
-                hAxis: {
-                    title: 'Ngày'
-                },
-                vAxis: {
-                    title: 'Doanh thu (VNĐ)'
-                }
-            };
+        // var data2 = google.visualization.arrayToDataTable(JSON.parse('<?php echo json_encode($arrayDatas2); ?>'));
+        var data2 = google.visualization.arrayToDataTable(JSON.parse('@json($arrayDatas2)'));
+        var options2 = {
+            legend: { position: 'none' },
+            hAxis: {
+                title: 'Ngày'
+            },
+            vAxis: {
+                title: 'Doanh thu (VNĐ)'
+            }
 
-            var chart2 = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
-            chart2.draw(data2, options2);
-        }
+        };
 
+        var chart2 = new google.visualization.ColumnChart(document.getElementById('columnchart_material'));
+        chart2.draw(data2, options2);
+    }
     </script>
 
 @endsection

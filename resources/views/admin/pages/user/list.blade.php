@@ -27,7 +27,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-responsive justify-content-center">
+                                <table class="table table-responsive">
                                     <thead>
                                         <tr>
                                             {{-- <th class="align-middle text-center" style="width: 10%">STT</th>
@@ -35,20 +35,20 @@
                                             <th class="align-middle text-center" style="width: 20%">Email</th>
                                             <th class="align-middle text-center" style="width: 20%">SĐT</th>
                                             <th class="align-middle text-center" style="width: 20%">Hạng</th> --}}
-                                            <th class="align-middle text-center" >STT</th>
-                                            <th class="align-middle text-center" >Tên</th>
-                                            <th class="align-middle text-center" >Email</th>
-                                            <th class="align-middle text-center" >SĐT</th>
-                                            <th class="align-middle text-center" >Hạng</th>
+                                            <th class="text-center" >STT</th>
+                                            <th class="text-center" >Tên</th>
+                                            <th class="text-center" >Email</th>
+                                            <th class="text-center" >SĐT</th>
+                                            <th class="text-center" >Hạng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse($users as $user)
                                             <tr>
-                                                <td class="align-middle text-center">{{ $loop->iteration }}</td>
-                                                <td class="align-middle text-center">{{ $user->name }}</td>
-                                                <td class="align-middle text-center">{{ $user->email }}</td>
-                                                <td class="align-middle text-center">{{ $user->phone }}</td>
+                                                <td class="text-center">{{ $loop->iteration }}</td>
+                                                <td class="text-center">{{ $user->name }}</td>
+                                                <td class="text-center">{{ $user->email }}</td>
+                                                <td class="text-center">{{ $user->phone }}</td>
                                                 @php
                                                     $rank = $user->calculateTotalAmount();
                                                     if($rank >= 1000000){
@@ -58,7 +58,7 @@
                                                         $rankName = 'Thành viên';
                                                     }
                                                 @endphp
-                                                <td class="align-middle text-center">
+                                                <td class="text-center">
                                                     {{ $rankName }}
                                                 </td>
                                             </tr>

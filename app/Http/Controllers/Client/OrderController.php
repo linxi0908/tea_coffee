@@ -146,9 +146,57 @@ class OrderController extends Controller
         }
     }
 
-    public function vnpayCallback(Request $request){
+    // public function vnpayCallback(Request $request){
+    //     $order = Order::find($request->vnp_TxnRef);
+    //     if($request->vnp_ResponseCode === '00'){
+    //         $order->status = Order::STATUS_SUCCESS;
+    //         $order->save();
+
+    //         $user = User::find($order->user_id);
+
+    //         $cart = [];
+    //         foreach($order->order_items as $item){
+    //             $product = Product::find($item->product_id);
+    //             $imagesLink = is_null($product->image)
+    //             || !file_exists('images/' . $product->image)
+    //             ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg'
+    //             : asset('images/' . $product->image);
+    //             $cart[$item->product_id] = [
+    //                 'name' => $item->product_name,
+    //                 'price' => $item->product_price,
+    //                 'image' => $imagesLink,
+    //                 'qty' => $item->qty
+    //             ];
+    //         }
+
+    //         $orderPaymentMethods = $order->order_payment_methods[0];
+    //         $orderPaymentMethods->status = OrderPaymentMethod::STATUS_SUCCESS;
+    //         $orderPaymentMethods->note = $request->vnp_OrderInfo;
+    //         $orderPaymentMethods->total = ($request->vnp_Amount)/100;
+    //         $orderPaymentMethods->save();
+
+    //         event(new PlaceOrderSuccess($order, $user, $cart));
+    //         $message = 'Thanh toán thành công!';
+    //     }else{
+    //         $order->status = Order::STATUS_FAILED;
+    //         $order->save();
+
+    //         $orderPaymentMethods = $order->order_payment_methods[0];
+    //         $orderPaymentMethods->status = 'failed';
+    //         $orderPaymentMethods->note = 'Giao dịch không thành công';
+    //         $orderPaymentMethods->save();
+    //         $message = 'Thanh toán không thành công!';
+    //     }
+
+    //     return redirect()->route('profile.edit')->with('message', $message);
+    // }
+    public function vnpayCallback(Request $request)
+    {
         $order = Order::find($request->vnp_TxnRef);
-        if($request->vnp_ResponseCode === '00'){
+        $errorCode = $request->vnp_ResponseCode;
+        $errorMessage = '';
+
+        if ($$errorCode === '00') {
             $order->status = Order::STATUS_SUCCESS;
             $order->save();
 
@@ -177,7 +225,49 @@ class OrderController extends Controller
 
             event(new PlaceOrderSuccess($order, $user, $cart));
             $message = 'Thanh toán thành công!';
-        }else{
+        }elseif ($errorCode === '07') {
+
+            $errorMessage = 'Giao dịch bị nghi ngờ (liên quan tới lừa đảo, giao dịch bất thường)';
+        } elseif ($errorCode === '09') {
+
+            $errorMessage = 'Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng';
+        } elseif ($errorCode === '10') {
+
+            $errorMessage = 'Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần';
+        } elseif ($errorCode === '11') {
+
+            $errorMessage = 'Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch';
+        } elseif ($errorCode === '12') {
+
+            $errorMessage = 'Thẻ/Tài khoản của khách hàng bị khóa';
+        } elseif ($errorCode === '13') {
+
+            $errorMessage = 'Khách hàng nhập sai mật khẩu xác thực giao dịch (OTP)';
+        } elseif ($errorCode === '24') {
+
+            $errorMessage = 'Khách hàng hủy giao dịch';
+        } elseif ($errorCode === '51') {
+
+            $errorMessage = 'Tài khoản của khách hàng không đủ số dư để thực hiện giao dịch';
+        } elseif ($errorCode === '65') {
+
+            $errorMessage = 'Tài khoản của khách hàng đã vượt quá hạn mức giao dịch trong ngày';
+        } elseif ($errorCode === '75') {
+
+            $errorMessage = 'Ngân hàng thanh toán đang bảo trì';
+        } elseif ($errorCode === '79') {
+
+            $errorMessage = 'Khách hàng nhập sai mật khẩu thanh toán quá số lần quy định';
+        } elseif ($errorCode === '99') {
+
+            $errorMessage = 'Có lỗi xảy ra';
+        } else {
+
+            $errorMessage = 'Mã lỗi không xác định';
+        }
+
+        if ($errorCode !== '00') {
+
             $order->status = Order::STATUS_FAILED;
             $order->save();
 
@@ -185,7 +275,8 @@ class OrderController extends Controller
             $orderPaymentMethods->status = 'failed';
             $orderPaymentMethods->note = 'Giao dịch không thành công';
             $orderPaymentMethods->save();
-            $message = 'Thanh toán không thành công!';
+
+            $message = 'Thanh toán không thành công! ' . $errorMessage;
         }
 
         return redirect()->route('profile.edit')->with('message', $message);
@@ -221,3 +312,5 @@ class OrderController extends Controller
         return redirect()->back()->with('message', $message);
     }
 }
+
+

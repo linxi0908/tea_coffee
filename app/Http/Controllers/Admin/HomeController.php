@@ -25,20 +25,23 @@ class HomeController extends Controller
         ->selectRaw('status, count(status) as number')
         ->groupBy('status')
         ->get();
-        foreach($dataOrders as $data){
-            $arrayDatas[] = [$data->status, $data->number];
+        foreach ($dataOrders as $data) {
+            $arrayDatas[] = [$data->status, intval($data->number)];
         }
 
         $arrayDatas2 = [];
         $arrayDatas2[] = ['Ngày', 'Doanh thu'];
 
+        $currentMonth = date('Y-m');
         $dataOrders2 = DB::table('orders')
-        ->select(DB::raw('DATE_FORMAT(orders.created_at, "%d/%m") as date'), DB::raw('SUM(orders.total) as total'))
+        ->select(DB::raw('DATE_FORMAT(orders.created_at, "%m/%d") as date'), DB::raw('SUM(orders.total) as total'))
+        ->whereRaw('DATE_FORMAT(orders.created_at, "%Y-%m") = ?', [$currentMonth])
         ->groupBy('date')
         ->get();
 
         foreach ($dataOrders2 as $data) {
-            $arrayDatas2[] = [$data->date, $data->total];
+            $date = date('m/d', strtotime($data->date));
+            $arrayDatas2[] = [$date, intval($data->total)];
         }
 
         return view('admin.pages.home', [

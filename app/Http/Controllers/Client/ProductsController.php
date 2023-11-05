@@ -25,7 +25,10 @@ class ProductsController extends Controller
 
         $products = Product::where('status', 1)
         ->when(!empty($keyword), function ($query) use ($keyword) {
-            $query->where('name', 'like', '%' . $keyword . '%');
+            $query->where('name', 'like', '%' . $keyword . '%')
+                ->orWhereHas('product_categories', function ($q) use ($keyword) {
+                    $q->where('name', 'like', '%' . $keyword . '%');
+                });
         })
         ->when(!empty($slug), function ($query) use ($slug) {
             $query->whereHas('product_categories', function ($q) use ($slug) {

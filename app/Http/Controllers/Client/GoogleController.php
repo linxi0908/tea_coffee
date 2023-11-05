@@ -28,8 +28,13 @@ class GoogleController extends Controller
             ]
         );
 
+        if($user->wasRecentlyCreated){
+            $message = "Đăng ký tài khoản thành công.";
+        }
+        else{
+            $message = "Đăng nhập thành công.";
+        }
         Auth::login($user);
-        $message = "Đăng ký tài khoản thành công.";
         return redirect()->route('profile.edit')->with('message', $message);
     }
 }
