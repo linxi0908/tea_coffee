@@ -146,50 +146,6 @@ class OrderController extends Controller
         }
     }
 
-    // public function vnpayCallback(Request $request){
-    //     $order = Order::find($request->vnp_TxnRef);
-    //     if($request->vnp_ResponseCode === '00'){
-    //         $order->status = Order::STATUS_SUCCESS;
-    //         $order->save();
-
-    //         $user = User::find($order->user_id);
-
-    //         $cart = [];
-    //         foreach($order->order_items as $item){
-    //             $product = Product::find($item->product_id);
-    //             $imagesLink = is_null($product->image)
-    //             || !file_exists('images/' . $product->image)
-    //             ? 'https://phutungnhapkhauchinhhang.com/wp-content/uploads/2020/06/default-thumbnail.jpg'
-    //             : asset('images/' . $product->image);
-    //             $cart[$item->product_id] = [
-    //                 'name' => $item->product_name,
-    //                 'price' => $item->product_price,
-    //                 'image' => $imagesLink,
-    //                 'qty' => $item->qty
-    //             ];
-    //         }
-
-    //         $orderPaymentMethods = $order->order_payment_methods[0];
-    //         $orderPaymentMethods->status = OrderPaymentMethod::STATUS_SUCCESS;
-    //         $orderPaymentMethods->note = $request->vnp_OrderInfo;
-    //         $orderPaymentMethods->total = ($request->vnp_Amount)/100;
-    //         $orderPaymentMethods->save();
-
-    //         event(new PlaceOrderSuccess($order, $user, $cart));
-    //         $message = 'Thanh toán thành công!';
-    //     }else{
-    //         $order->status = Order::STATUS_FAILED;
-    //         $order->save();
-
-    //         $orderPaymentMethods = $order->order_payment_methods[0];
-    //         $orderPaymentMethods->status = 'failed';
-    //         $orderPaymentMethods->note = 'Giao dịch không thành công';
-    //         $orderPaymentMethods->save();
-    //         $message = 'Thanh toán không thành công!';
-    //     }
-
-    //     return redirect()->route('profile.edit')->with('message', $message);
-    // }
     public function vnpayCallback(Request $request)
     {
         $order = Order::find($request->vnp_TxnRef);

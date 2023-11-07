@@ -27,14 +27,9 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <table class="table table-responsive">
+                                <table class="table">
                                     <thead>
                                         <tr>
-                                            {{-- <th class="align-middle text-center" style="width: 10%">STT</th>
-                                            <th class="align-middle text-center" style="width: 20%">Tên</th>
-                                            <th class="align-middle text-center" style="width: 20%">Email</th>
-                                            <th class="align-middle text-center" style="width: 20%">SĐT</th>
-                                            <th class="align-middle text-center" style="width: 20%">Hạng</th> --}}
                                             <th class="text-center" >STT</th>
                                             <th class="text-center" >Tên</th>
                                             <th class="text-center" >Email</th>

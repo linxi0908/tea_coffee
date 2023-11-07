@@ -206,17 +206,15 @@ class InvoicesController extends Controller
             }
 
             $order = new Order;
-
-            if ($request->has('phone')) {
+            if ($request->phone === null) {
+                if (Auth::check()) {
+                    $order->user_id = Auth::user()->id;
+                }
+            } else {
                 $user = User::where('phone', $request->phone)->first();
                 if ($user) {
                     $order->user_id = $user->id;
-                } else {
-                    $order->user_id = Auth::user()->id;
                 }
-            }
-            else {
-                $order->user_id = Auth::user()->id;
             }
             $order->note = $validatedData['note'];
             $order->status = Order::STATUS_SUCCESS;

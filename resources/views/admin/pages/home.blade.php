@@ -91,7 +91,7 @@
             <div class="col-md-6">
                 <div class="card">
                   <div class="card-header">
-                    <h5 class="card-title">Báo cáo doanh thu</h5>
+                    <h5 class="card-title">Báo cáo doanh thu tháng</h5>
                   </div>
                   <!-- /.card-header -->
                   <div class="card-body">
